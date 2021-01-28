@@ -4,8 +4,8 @@
     @if($isActive)
         {{$message1}}
     @else
-        {{message2}}
-        @endif
+        {{$message2}}
+    @endif
 
-<h1>Hello</h1>
+<h1>Hello world</h1>
 @endsection

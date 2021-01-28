@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Привет, я Павел Мельников!!!
+                    <p style="color: red">Hello, I am Pavel Melnikov :)</p>
                 </div>
 
                 <div class="links">

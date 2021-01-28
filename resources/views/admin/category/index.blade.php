@@ -1,44 +1,51 @@
 @extends('layouts.admin')
+
 @section('content')
 <main>
     <div class="container-fluid">
         <h1 class="mt-4">Tables</h1>
-
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Tables</li>
+        </ol>
 
         <div class="card mb-4">
+            <div class="card-header">
+                <a href="{{ route('admin_create_category') }}">Добавление категории</a>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
-
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                        </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <table class="table table-bordered dataTable" id="dataTable" width="100%"
                                        cellspacing="0" role="grid" aria-describedby="dataTable_info"
                                        style="width: 100%;">
                                     <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending" style="width: 193px;">
-                                            Name
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 297px;">Action
-                                        </th>
 
-                                        </th>
-                                    </tr>
                                     </thead>
                                     <tfoot>
-                                    @foreach ($categories as $category)
                                     <tr>
-                                        <th>{{$category->name}}</th>
-                                        <th>Position</th>
-
+                                        <th rowspan="1" colspan="1">Name</th>
+                                        <th rowspan="1" colspan="1">Actions</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
+                                    @foreach($categories as $category)
+                                    <tr role="row" class="odd">
+                                        <td>{{ $category->name }}</td>
+                                        <td>
+                                            <a class="btn btn-info" href="{{route('admin_category_edit', ['id' =>$category->id])}}">Редактировать</a>
+                                            <a class="btn btn-info" href="{{route('admin_category_destroy', ['id' =>$category->id])}}">Удалить</a>
+                                        </td>
+                                    </tr>
                                     @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
                                 <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">
