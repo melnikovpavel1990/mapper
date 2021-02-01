@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin.category.index', compact('categories'));
+        $categories = Product::all();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -26,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.product.create');
     }
 
     /**
@@ -38,7 +39,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
-        Category::create($request->except('_token'));
+        Product::create($request->except('_token'));
         return redirect()->route('dashboard');
     }
 
@@ -61,9 +62,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        return view('admin.category.edit', ['category' => $category]);
+        return view('admin.product.edit', ['product' => $product]);
     }
 
     /**
@@ -75,10 +76,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($id);
-        $category->fill($request->all());
-        $category->is_active = $request->input('is_active', false);
-        $category->save();
+        $product = Product::findOrFail($id);
+        $product->fill($request->all());
+        $product->is_active = $request->input('is_active', false);
+        $product->save();
 
         return redirect()->route('dashboard');
     }
@@ -91,9 +92,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
-        Category::destroy($id);
+        $product = Product::find($id);
+        $product->delete();
+        Product::destroy($id);
         return redirect()->route('dashboard');
     }
 }

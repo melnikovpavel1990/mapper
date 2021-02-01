@@ -27,6 +27,17 @@ Route::put('/admins/category/{id}/update', 'Admin\\CategoryController@update')
 Route::delete('/admins/category/{id}/update', 'Admin\\CategoryController@destroy')
     ->name('admin_category_destroy');
 
+Route::get('/admins/product/', 'Admin\\ProductController@index');
+Route::get('/admins/product/create', 'Admin\\ProductController@create')
+    ->name('admin_create_product');
+//Route::post('/admins/product/create', 'Admin\\ProductController@store')
+//    ->name('admin_product_store');
+//Route::get('/admins/product/{id}/create', 'Admin\\ProductController@edit')
+//    ->name('admin_product_edit');
+//Route::put('/admins/product/{id}/update', 'Admin\\ProductController@update')
+//    ->name('admin_product_update');
+//Route::delete('/admins/product/{id}/update', 'Admin\\ProductController@destroy')
+//    ->name('admin_product_destroy');
 
 Auth::routes();
 
