@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = Product::all();
+        $products = Product::all();
         return view('admin.product.index', compact('products'));
     }
 
@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
 
         Product::create($request->except('_token'));
-        return redirect()->route('dashboard');
+        return redirect()->route('products');
     }
 
     /**
@@ -81,7 +81,7 @@ class ProductController extends Controller
         $product->is_active = $request->input('is_active', false);
         $product->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('products');
     }
 
     /**
@@ -92,9 +92,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+//        $product = Product::find($id);
+//        $product->delete($id);
         Product::destroy($id);
-        return redirect()->route('dashboard');
+        return redirect()->route('products');
     }
 }
